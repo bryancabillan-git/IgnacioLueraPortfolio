@@ -4,8 +4,6 @@ import ArtworkCard from '../components/ArtworkCard.astro';
 import ArtworkLightbox from '../components/ArtworkLightbox.astro';
 import { featuredArtworks } from '../data/artworks';
 import { site } from '../config';
-
-const heroArtwork = featuredArtworks[0];
 ---
 
 <BaseLayout>
@@ -21,7 +19,13 @@ const heroArtwork = featuredArtworks[0];
     </div>
 
     <figure class="hero-art">
-      <img src={heroArtwork.image} alt={heroArtwork.alt} width="900" height="1125" fetchpriority="high" />
+      <img
+        src="/art/mayanignacio.png"
+        alt="Blue circular artwork featuring a central portrait surrounded by Mayan-inspired imagery"
+        width="717"
+        height="793"
+        fetchpriority="high"
+      />
       <figcaption>
         <span>Selected work</span>
         <span>Portfolio</span>

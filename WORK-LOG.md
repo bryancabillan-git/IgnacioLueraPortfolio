@@ -320,3 +320,11 @@ Approved artwork images will be added to `public/art/`, and their metadata will 
 - Preserved the existing About-page grid column width.
 - Applied centered cover cropping so the image fills the existing responsive portrait area.
 - Removed the portrait from the outstanding-content note.
+
+## Homepage hero artwork update
+
+- Added the supplied `mayanignacio.png` artwork to the public site assets.
+- Replaced the homepage placeholder beside “Ignacio Luera” with the supplied artwork.
+- Preserved the existing hero column and frame dimensions.
+- Used the existing centered cover treatment for a small responsive crop.
+- Added descriptive alternative text and intrinsic image dimensions.
