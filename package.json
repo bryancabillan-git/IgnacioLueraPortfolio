@@ -5,18 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "dev:canva": "swa start http://localhost:4321 --api-location api --run \"npm run dev -- --host 127.0.0.1\"",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "check": "astro check",
-    "sync:canva": "node scripts/sync-canva.mjs"
+    "check": "astro check"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
     "astro": "^7.4.6",
     "typescript": "^5.9.3"
-  },
-  "devDependencies": {
-    "@azure/static-web-apps-cli": "^2.1.0"
   }
 }

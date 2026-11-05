@@ -275,3 +275,40 @@ Copy this section for each later work session.
 - Complete OAuth against the test Canva account.
 - Confirm folder and thumbnail retrieval with live account data.
 - Confirm at least one asynchronous JPG export.
+
+### Canva test result presentation correction
+
+- Confirmed the test API successfully returned one Canva design.
+- Identified that Canva omitted the optional design thumbnail.
+- Removed the dark unused-grid background that made an empty gallery track resemble a blank image.
+- Added an explicit instruction to use the JPG export test when Canva does not return a thumbnail.
+
+## Scope change — Canva API integration removed
+
+The project owner chose to simplify the portfolio and retain only the static Astro implementation.
+
+### Removed
+
+- Internal Canva OAuth Test page and navigation entry
+- Azure Functions API backend
+- Local OAuth settings and stored test tokens
+- Canva OAuth, PKCE, folder, thumbnail, and export code
+- Canva synchronization script and generated catalog
+- Canva synchronization GitHub Actions workflow
+- Static Web Apps CLI development dependency
+- Canva-specific authentication routes and documentation
+
+### Retained
+
+- Astro static-site configuration
+- Home, Work, About, Contact, and 404 pages
+- Static artwork catalog in `src/data/artworks.ts`
+- Gallery filters and artwork lightbox
+- Ignacio’s biography and contact information
+- Existing Canva portfolio link
+- Azure Static Web Apps static deployment workflow
+- Historical work entries in this log for billing and documentation
+
+### Ongoing artwork workflow
+
+Approved artwork images will be added to `public/art/`, and their metadata will be maintained directly in `src/data/artworks.ts`. This removes the need for Canva developer credentials, OAuth token rotation, Azure Functions, Azure Key Vault, and scheduled synchronization.

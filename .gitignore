@@ -4,8 +4,5 @@ dist/
 .env
 .env.*
 !.env.example
-.canva-token.json
-api/local.settings.json
-api/.data/
 *.log
 .DS_Store

@@ -1,19 +1,5 @@
 {
-  "routes": [
-    {
-      "route": "/test/index.html",
-      "allowedRoles": ["authenticated"]
-    },
-    {
-      "route": "/api/canva/*",
-      "allowedRoles": ["authenticated"]
-    }
-  ],
   "responseOverrides": {
-    "401": {
-      "statusCode": 302,
-      "redirect": "/.auth/login/github?post_login_redirect_uri=.referrer"
-    },
     "404": {
       "rewrite": "/404.html"
     }

@@ -1,5 +1,3 @@
-import canvaArtworks from './canva-artworks.json';
-
 export interface Artwork {
   slug: string;
   title: string;
@@ -11,11 +9,9 @@ export interface Artwork {
   collection: string;
   description: string;
   featured: boolean;
-  canvaDesignId?: string;
-  canvaUpdatedAt?: number;
 }
 
-const placeholders: Artwork[] = [
+export const artworks: Artwork[] = [
   {
     slug: 'memory-in-blue',
     title: 'Artwork Placeholder I',
@@ -84,7 +80,4 @@ const placeholders: Artwork[] = [
   },
 ];
 
-const syncedArtworks = canvaArtworks as Artwork[];
-
-export const artworks = syncedArtworks.length > 0 ? syncedArtworks : placeholders;
 export const featuredArtworks = artworks.filter((artwork) => artwork.featured).slice(0, 3);

@@ -1,175 +1,133 @@
 # Ignacio Luera Portfolio
 
-A static, image-first portfolio for visual artist and educator Ignacio Luera. The site uses Astro, deploys to Azure Static Web Apps, and includes an opt-in Canva synchronization utility.
+A static, image-first portfolio for visual artist and educator Ignacio Luera. The site is built with Astro and prepared for deployment to Azure Static Web Apps.
 
 Project and billing documentation: [`WORK-LOG.md`](WORK-LOG.md)
 
+## Project approach
+
+The portfolio is intentionally static. Artwork files and metadata are managed directly in this repository. The earlier Canva API experiment was removed to reduce authentication, secret-storage, runtime, and maintenance requirements.
+
+The existing Canva portfolio remains linked from the Contact page and footer, but this site does not call Canva APIs or retrieve Canva content automatically.
+
 ## Current status
 
-The website is complete as a responsive working draft. Ignacio’s biography, education, email address, Instagram profile, and Facebook profile are included. It still uses placeholders for content that Ignacio must approve or supply:
+The website includes:
+
+- Responsive Home, Work, About, Contact, and 404 pages
+- Ignacio’s biography and education history
+- Email, Instagram, and Facebook links
+- Filterable artwork gallery
+- Accessible full-screen artwork viewer
+- Azure Static Web Apps configuration and deployment workflow
+
+Content still needed before launch:
 
 - Original artwork files
 - Artist statement
 - Portrait or studio photograph
 - Exhibition and additional teaching history
-- Artwork medium, year, dimensions, and descriptions
-
-The existing Canva portfolio remains linked from the Contact page and footer.
+- Artwork titles, media, years, dimensions, descriptions, and collections
 
 ## Run locally
 
 Requirements: Node.js 22 or newer.
 
 ```powershell
+Set-Location "C:\Users\Bryan Skyline\Documents\Kiro\IgnacioLueraPortfolio"
 npm install
 npm run dev
 ```
 
-Open the local address printed by Astro. For a production check:
+Open the local address printed by Astro, normally <http://localhost:4321>.
+
+For a production check:
 
 ```powershell
 npm run build
 ```
 
-## Internal Canva OAuth test page
+The production output is generated in `dist/`.
 
-The protected `/test/` page tests Canva authorization, folder discovery, live design thumbnails, and asynchronous JPG exports before the customer account is connected. The browser never receives the Canva client secret or refresh token.
+## Add or update artwork
 
-### 1. Configure the Canva test app
+### 1. Add the image
 
-In Canva’s Developer Portal, create an **Outside Canva** REST API integration with these scopes:
-
-- `folder:read`
-- `design:content:read`
-
-Add this exact local redirect URL:
+Copy the approved image into:
 
 ```text
-http://localhost:4280/api/canva/callback
+public/art/
 ```
 
-Copy the Client ID and generate a Client Secret. Do not add the secret to Git or browser code.
+Use a lowercase, descriptive filename without spaces, for example:
 
-### 2. Create local settings
+```text
+blue-memory.jpg
+```
 
-Copy `api/local.settings.example.json` to `api/local.settings.json`:
+WebP or AVIF is preferred for large artwork photographs when an optimized copy is available. Keep a separate archival original outside the website repository.
+
+### 2. Add the artwork record
+
+Open:
+
+```text
+src/data/artworks.ts
+```
+
+Add an object to the `artworks` array:
+
+```typescript
+{
+  slug: 'blue-memory',
+  title: 'Blue Memory',
+  image: '/art/blue-memory.jpg',
+  alt: 'Description of the visible artwork for screen-reader users',
+  medium: 'Acrylic on canvas',
+  year: '2026',
+  dimensions: '24 × 36 in.',
+  collection: 'Memory Studies',
+  description: 'Ignacio’s approved description of the artwork.',
+  featured: true,
+},
+```
+
+Set `featured: true` to make a piece eligible for the homepage. The homepage displays the first three featured records.
+
+### 3. Validate the site
 
 ```powershell
-Copy-Item "api/local.settings.example.json" "api/local.settings.json"
+npm run build
 ```
 
-Generate a random session-encryption secret:
-
-```powershell
-node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
-```
-
-Open the ignored `api/local.settings.json` and replace:
-
-- `paste-client-id-here`
-- `paste-client-secret-here`
-- `replace-with-at-least-32-random-characters`
-
-The local OAuth token is stored in ignored file `api/.data/canva-token.json`. Delete that file to disconnect the local test account.
-
-### 3. Run the integrated local site
-
-```powershell
-npm install
-npm --prefix api install
-npm run dev:canva
-```
-
-Open <http://localhost:4280/test/>. Use the Static Web Apps emulator login, select **Connect test Canva account**, approve access in Canva, load the test folder, and pull its designs.
-
-The **Refresh every 60 seconds** option retrieves current folder metadata and short-lived thumbnails from Canva. **Test JPG export** exercises Canva’s asynchronous export API. This validates the integration but does not publish test-account designs to the public Work page.
-
-### 4. Production token storage
-
-Local file storage is intentionally blocked in Azure. Before deploying the test API, configure `CANVA_KEY_VAULT_URL` and grant the Static Web App’s managed identity permission to read and write the Key Vault secret named `canva-oauth-token`.
-
-The Test page and `/api/canva/*` routes are protected with the Static Web Apps `authenticated` role. Before customer launch, remove the Test navigation link and route or restrict it to a custom administrator role.
+Review the Home and Work pages before committing the changes.
 
 ## Content locations
 
-- Site details: `src/config.ts`
-- Placeholder and synchronized artwork loader: `src/data/artworks.ts`
-- Canva-generated catalog: `src/data/canva-artworks.json`
-- Placeholder images: `public/art/`
-- Biography: `src/pages/about.astro`
-- Homepage artist statement: `src/pages/index.astro`
-
-When `src/data/canva-artworks.json` contains artwork, the site automatically stops showing placeholder artwork.
-
-## Artwork naming convention in Canva
-
-Put each public artwork design in a dedicated Canva folder. A design title can provide basic metadata using this format:
-
-```text
-Artwork title | Medium | Year | Collection
-```
-
-Example:
-
-```text
-Blue Memory | Acrylic on canvas | 2025 | Memory Studies
-```
-
-The synchronizer preserves manually edited metadata already present in `canva-artworks.json` when a design is re-exported.
-
-## Manual Canva synchronization
-
-Create a Canva developer integration and request these scopes:
-
-- `folder:read`
-- `design:content:read`
-
-After Ignacio authorizes the integration, set a temporary access token and the dedicated portfolio folder ID:
-
-```powershell
-$env:CANVA_ACCESS_TOKEN = "temporary-access-token"
-$env:CANVA_FOLDER_ID = "portfolio-folder-id"
-npm run sync:canva
-```
-
-The script lists the designs in that folder, exports changed designs as JPG files, saves permanent copies under `public/art/canva/`, and regenerates `src/data/canva-artworks.json`.
-
-Never place tokens in browser code, Git, or `src/config.ts`. Canva's exported download URLs are temporary, so the synchronizer downloads each result instead of placing the temporary URL in the website.
-
-## Automated Canva synchronization
-
-`.github/workflows/sync-canva.yml` contains a manual workflow prepared for secure refresh-token rotation through Azure Key Vault. It is not scheduled by default, which prevents failed or unsafe runs before configuration is complete.
-
-Configure these GitHub repository variables:
-
-- `AZURE_CLIENT_ID`
-- `AZURE_TENANT_ID`
-- `AZURE_SUBSCRIPTION_ID`
-- `CANVA_KEY_VAULT_NAME`
-- `CANVA_CLIENT_ID`
-- `CANVA_FOLDER_ID`
-
-Configure this GitHub repository secret:
-
-- `CANVA_CLIENT_SECRET`
-
-Create a Key Vault secret named `canva-oauth-token`. Its value is the JSON token bundle created by the OAuth callback. Grant the GitHub OIDC identity permission to read and update that secret. Run the workflow manually once. After it succeeds, automation can be enabled by adding this trigger to the workflow:
-
-```yaml
-schedule:
-  - cron: "17 */6 * * *"
-```
-
-The non-round minute reduces the likelihood of GitHub Actions schedule congestion.
+- Site details and contact links: `src/config.ts`
+- Artwork catalog: `src/data/artworks.ts`
+- Artwork images: `public/art/`
+- Biography and education: `src/pages/about.astro`
+- Homepage and artist-statement placeholder: `src/pages/index.astro`
+- Contact page: `src/pages/contact.astro`
+- Shared visual styles: `src/styles/global.css`
 
 ## Azure Static Web Apps deployment
 
-1. Create an Azure Static Web App connected to this repository.
+The deployment workflow is located at:
+
+```text
+.github/workflows/azure-static-web-apps.yml
+```
+
+To deploy:
+
+1. Create an Azure Static Web App connected to this GitHub repository.
 2. Add its deployment token as the GitHub repository secret `AZURE_STATIC_WEB_APPS_API_TOKEN`.
-3. Add the Canva settings and `CANVA_KEY_VAULT_URL` as Static Web App application settings.
-4. Run **Deploy to Azure Static Web Apps** manually.
-5. Set the `SITE_URL` build environment variable after assigning the production domain.
-6. After one successful deployment, restore the workflow’s push trigger if continuous deployment is desired:
+3. Set the `SITE_URL` build environment variable to the final production URL.
+4. Run **Deploy to Azure Static Web Apps** from the repository’s Actions page.
+
+The workflow currently runs manually to avoid failed deployments before the Azure resource and token are configured. After one successful deployment, continuous deployment can be enabled with:
 
 ```yaml
 on:
@@ -178,21 +136,12 @@ on:
   workflow_dispatch:
 ```
 
-The deployment workflow uses:
+Build settings:
 
 - App location: `/`
-- API location: `api`
+- API location: empty
 - Output location: `dist`
 
-## API and platform references
+## GitHub repository
 
-- [Canva OAuth authentication](https://www.canva.dev/docs/connect/authentication/)
-- [List Canva folder items](https://www.canva.dev/docs/connect/api-reference/folders/list-folder-items/)
-- [Create a Canva design export job](https://www.canva.dev/docs/connect/api-reference/exports/create-design-export-job/)
-- [Get a Canva design export job](https://www.canva.dev/docs/connect/api-reference/exports/get-design-export-job/)
-- [Generate or refresh a Canva access token](https://www.canva.dev/docs/connect/api-reference/authentication/generate-access-token/)
-- [Azure Static Web Apps API overview](https://learn.microsoft.com/azure/static-web-apps/apis-overview)
-- [Azure Static Web Apps authentication](https://learn.microsoft.com/azure/static-web-apps/authentication-authorization)
-- [Azure Static Web Apps local development](https://learn.microsoft.com/azure/static-web-apps/local-development)
-
-The integration notes above paraphrase the linked documentation for licensing compliance.
+<https://github.com/bryancabillan-git/IgnacioLueraPortfolio>
