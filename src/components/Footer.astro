@@ -1,0 +1,22 @@
+---
+import { site } from '../config';
+import SocialLinks from './SocialLinks.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div>
+      <p class="eyebrow eyebrow-light">Visual artist and educator</p>
+      <p class="footer-name">{site.name}</p>
+    </div>
+
+    <div class="footer-links">
+      <SocialLinks label="Ignacio Luera on social media" />
+      <a href={site.canvaUrl} rel="noreferrer">Original Canva portfolio</a>
+    </div>
+
+    <p class="copyright">© {year} {site.name}. All artwork rights reserved.</p>
+  </div>
+</footer>

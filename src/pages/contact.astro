@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import { site } from '../config';
+---
+
+<BaseLayout title="Contact" description="Contact visual artist and educator Ignacio Luera.">
+  <header class="shell page-hero">
+    <div>
+      <p class="eyebrow">Get in touch</p>
+      <h1>Contact</h1>
+    </div>
+    <div class="page-hero-copy">
+      <p class="lead">For exhibitions, educational programs, collaborations, and general inquiries.</p>
+    </div>
+  </header>
+
+  <section class="shell section contact-grid" aria-labelledby="contact-title">
+    <div class="contact-card">
+      <p class="eyebrow eyebrow-light">Start a conversation</p>
+      <h2 id="contact-title">Connect with Ignacio</h2>
+      <p>For exhibitions, educational programs, collaborations, and general inquiries, email Ignacio or connect through social media.</p>
+      <div class="button-row">
+        <a class="button button-rust" href={`mailto:${site.email}`}>Send an email</a>
+      </div>
+    </div>
+
+    <dl class="contact-details">
+      <div class="contact-detail">
+        <dt>Email</dt>
+        <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+      </div>
+      <div class="contact-detail">
+        <dt>Social media</dt>
+        <dd><SocialLinks label="Follow Ignacio Luera" /></dd>
+      </div>
+      <div class="contact-detail">
+        <dt>Current portfolio</dt>
+        <dd><a href={site.canvaUrl} rel="noreferrer">View original Canva portfolio ↗</a></dd>
+      </div>
+    </dl>
+  </section>
+</BaseLayout>

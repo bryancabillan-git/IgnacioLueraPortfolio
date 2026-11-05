@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1125" role="img" aria-labelledby="title desc">
+<title id="title">Blue artwork placeholder</title><desc id="desc">Layered cobalt circular linework used until original artwork is supplied.</desc>
+<rect width="900" height="1125" fill="#173d67"/><path d="M0 0h900v1125H0z" fill="#244f7d" opacity=".35"/>
+<g transform="translate(450 520)" fill="none" stroke="#e5d9bd"><circle r="335" stroke-width="15"/><circle r="270" stroke-width="42" stroke-dasharray="15 20"/><circle r="190" stroke-width="11"/><circle r="130" stroke="#90adc2" stroke-width="34" stroke-dasharray="8 14"/><circle r="62" fill="#d5c6a6" stroke="#1a1714" stroke-width="10"/></g>
+<g transform="translate(450 520)" stroke="#d5c6a6" stroke-width="9"><path d="M0-410v120M0 290v120M-410 0h120M290 0h120"/><path d="M-290-290l85 85M205 205l85 85M290-290l-85 85M-205 205l-85 85"/></g>
+<text x="450" y="1035" text-anchor="middle" fill="#e5d9bd" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="7">ARTWORK PLACEHOLDER</text></svg>

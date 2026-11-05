@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About" description="Learn about visual artist and educator Ignacio Luera.">
+  <header class="shell page-hero">
+    <div>
+      <p class="eyebrow">The artist</p>
+      <h1>About</h1>
+    </div>
+    <div class="page-hero-copy">
+      <p class="lead">Visual artist and educator creating work grounded in memory, identity, place, and community.</p>
+    </div>
+  </header>
+
+  <section class="shell section about-grid" aria-labelledby="biography-title">
+    <div class="portrait-placeholder" role="img" aria-label="Placeholder for a portrait of Ignacio Luera">
+      <span class="portrait-monogram" aria-hidden="true">IL</span>
+    </div>
+
+    <div class="about-copy">
+      <p class="eyebrow">Biography</p>
+      <h2 id="biography-title">Ignacio Luera</h2>
+      <p>Ignacio Luera was born on August 1, 1985, in Georgetown, Texas. He earned a Bachelor of Fine Arts with an emphasis in painting from Texas State University in 2014 and a Master of Arts from Teachers College, Columbia University, in 2024. He is currently pursuing a Master of Fine Arts at Alfred University.</p>
+      <p>Ignacio grew up on both sides of the Texas–Mexico border. His work documents the periods and experiences that helped shape his identity, including food, fashion, music, movies, trips across the border to visit family, the people he has encountered, and family customs. From childhood into adulthood, Ignacio shares moments that have influenced his experience of life, his celebrations of life, and his pride in who he is.</p>
+      <p>Working in acrylic and oil, Ignacio uses a bright palette to reflect the intense colors of Mexican culture. He is currently exploring his roots more deeply to better understand his family customs and strengthen his appreciation for Mexican and Mexican American culture. Ignacio’s journey is ongoing, with more celebrations still to share.</p>
+
+      <div class="education-block" aria-labelledby="education-title">
+        <p class="eyebrow" id="education-title">Education</p>
+        <ul class="education-list">
+          <li>
+            <strong>Master of Fine Arts</strong>
+            <span>In progress · Alfred University</span>
+          </li>
+          <li>
+            <strong>Master of Arts</strong>
+            <span>2024 · Teachers College, Columbia University</span>
+          </li>
+          <li>
+            <strong>Bachelor of Fine Arts, Painting</strong>
+            <span>2014 · Texas State University</span>
+          </li>
+        </ul>
+      </div>
+
+      <p class="content-note">Content still needed before launch: an approved artist statement, portrait, exhibition history, and additional teaching background.</p>
+    </div>
+  </section>
+
+  <section class="shell section" aria-labelledby="practice-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Practice</p>
+        <h2 id="practice-title">Ideas in the work</h2>
+      </div>
+    </div>
+
+    <div class="values-grid">
+      <article class="value">
+        <p class="value-number">01</p>
+        <h3>Memory</h3>
+        <p>Food, fashion, music, movies, and visits with family become records of personal and shared memory.</p>
+      </article>
+      <article class="value">
+        <p class="value-number">02</p>
+        <h3>Identity</h3>
+        <p>Experiences on both sides of the Texas–Mexico border inform Ignacio’s evolving sense of identity.</p>
+      </article>
+      <article class="value">
+        <p class="value-number">03</p>
+        <h3>Celebration</h3>
+        <p>Bright color and family customs express pride in Mexican and Mexican American culture.</p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+import type { Artwork } from '../data/artworks';
+
+interface Props {
+  artwork: Artwork;
+  eager?: boolean;
+}
+
+const { artwork, eager = false } = Astro.props;
+---
+
+<article class="artwork-card-wrap">
+  <button
+    class="artwork-card"
+    type="button"
+    data-artwork-card
+    data-title={artwork.title}
+    data-image={artwork.image}
+    data-alt={artwork.alt}
+    data-meta={`${artwork.medium} · ${artwork.year}`}
+    data-description={artwork.description}
+    aria-label={`View ${artwork.title}`}
+  >
+    <span class="artwork-frame">
+      <img
+        src={artwork.image}
+        alt={artwork.alt}
+        width="900"
+        height="1125"
+        loading={eager ? 'eager' : 'lazy'}
+        fetchpriority={eager ? 'high' : 'auto'}
+      />
+      <span class="view-cue" aria-hidden="true">View work ↗</span>
+    </span>
+    <span class="artwork-caption">
+      <span class="artwork-title">{artwork.title}</span>
+      <span class="artwork-meta">{artwork.medium} · {artwork.year}</span>
+    </span>
+  </button>
+</article>

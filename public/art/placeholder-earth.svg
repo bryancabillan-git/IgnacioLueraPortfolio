@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1125" role="img" aria-labelledby="title desc">
+<title id="title">Earth artwork placeholder</title><desc id="desc">Layered terracotta and dark earth forms used until original artwork is supplied.</desc>
+<rect width="900" height="1125" fill="#a24432"/><path d="M0 760Q180 590 330 745T640 730Q760 620 900 700v425H0Z" fill="#171513"/><path d="M0 640Q160 500 310 635t300 10q150-150 290-45v250q-140-105-290 45t-300-10Q160 750 0 890Z" fill="#d5c6a6"/>
+<circle cx="450" cy="365" r="180" fill="#244f7d" stroke="#171513" stroke-width="18"/><circle cx="450" cy="365" r="115" fill="none" stroke="#d5c6a6" stroke-width="38" stroke-dasharray="10 15"/><circle cx="450" cy="365" r="45" fill="#171513"/>
+<text x="450" y="1035" text-anchor="middle" fill="#f1ebdc" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="7">ARTWORK PLACEHOLDER</text></svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1125" role="img" aria-labelledby="title desc">
+<title id="title">Rust artwork placeholder</title><desc id="desc">Rust, black, and cream geometric linework used until original artwork is supplied.</desc>
+<defs><pattern id="p" width="30" height="30" patternUnits="userSpaceOnUse" patternTransform="rotate(24)"><path d="M0 0v30" stroke="#f1ebdc" stroke-width="8" opacity=".13"/></pattern></defs>
+<rect width="900" height="1125" fill="#a24432"/><rect width="900" height="1125" fill="url(#p)"/>
+<path d="M90 855 450 175 810 855Z" fill="none" stroke="#1a1714" stroke-width="24"/><path d="m170 810 280-510 280 510Z" fill="#d5c6a6" stroke="#1a1714" stroke-width="12"/>
+<circle cx="450" cy="625" r="145" fill="#244f7d" stroke="#1a1714" stroke-width="18"/><path d="M338 680q112-185 224 0M360 725h180" fill="none" stroke="#f1ebdc" stroke-width="20"/>
+<text x="450" y="1035" text-anchor="middle" fill="#f1ebdc" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="7">ARTWORK PLACEHOLDER</text></svg>

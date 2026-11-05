@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1125" role="img" aria-labelledby="title desc">
+<title id="title">Night artwork placeholder</title><desc id="desc">Dark geometric forms used until original artwork is supplied.</desc>
+<rect width="900" height="1125" fill="#171513"/>
+<path d="M450 105 825 850H75Z" fill="#244f7d" stroke="#d5c6a6" stroke-width="18"/><path d="M450 245 710 790H190Z" fill="#111b24" stroke="#a24432" stroke-width="15"/>
+<circle cx="450" cy="610" r="160" fill="#d5c6a6" stroke="#171513" stroke-width="20"/><circle cx="450" cy="610" r="96" fill="#a24432"/>
+<path d="M386 636q64-105 128 0" fill="none" stroke="#171513" stroke-width="17"/><circle cx="412" cy="590" r="10"/><circle cx="488" cy="590" r="10"/>
+<text x="450" y="1035" text-anchor="middle" fill="#d5c6a6" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="7">ARTWORK PLACEHOLDER</text></svg>

@@ -1,0 +1,41 @@
+<dialog class="artwork-dialog" data-artwork-dialog aria-labelledby="dialog-title">
+  <button class="dialog-close" type="button" data-dialog-close aria-label="Close artwork viewer">×</button>
+  <div class="dialog-grid">
+    <div class="dialog-image-wrap">
+      <img data-dialog-image src="" alt="" />
+    </div>
+    <div class="dialog-copy">
+      <p class="eyebrow">Selected work</p>
+      <h2 id="dialog-title" data-dialog-title></h2>
+      <p class="artwork-meta" data-dialog-meta></p>
+      <p data-dialog-description></p>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('[data-artwork-dialog]');
+  const dialogImage = dialog?.querySelector<HTMLImageElement>('[data-dialog-image]');
+  const dialogTitle = dialog?.querySelector<HTMLElement>('[data-dialog-title]');
+  const dialogMeta = dialog?.querySelector<HTMLElement>('[data-dialog-meta]');
+  const dialogDescription = dialog?.querySelector<HTMLElement>('[data-dialog-description]');
+  const closeButton = dialog?.querySelector<HTMLButtonElement>('[data-dialog-close]');
+
+  document.querySelectorAll<HTMLButtonElement>('[data-artwork-card]').forEach((card) => {
+    card.addEventListener('click', () => {
+      if (!dialog || !dialogImage || !dialogTitle || !dialogMeta || !dialogDescription) return;
+
+      dialogImage.src = card.dataset.image ?? '';
+      dialogImage.alt = card.dataset.alt ?? '';
+      dialogTitle.textContent = card.dataset.title ?? '';
+      dialogMeta.textContent = card.dataset.meta ?? '';
+      dialogDescription.textContent = card.dataset.description ?? '';
+      dialog.showModal();
+    });
+  });
+
+  closeButton?.addEventListener('click', () => dialog?.close());
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+</script>

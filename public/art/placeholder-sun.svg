@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1125" role="img" aria-labelledby="title desc">
+<title id="title">Sun artwork placeholder</title><desc id="desc">Cream and cobalt radial forms used until original artwork is supplied.</desc>
+<rect width="900" height="1125" fill="#d5c6a6"/>
+<g transform="translate(450 520)" fill="none" stroke="#173d67"><circle r="330" stroke-width="22"/><circle r="250" stroke-width="60" stroke-dasharray="12 20"/><circle r="155" stroke-width="16"/><circle r="82" fill="#a24432" stroke="#1a1714" stroke-width="15"/></g>
+<g transform="translate(450 520)" stroke="#173d67" stroke-width="14"><path d="M0-440v90M0 350v90M-440 0h90M350 0h90"/><path d="m-311-311 65 65m492 492 65 65m0-622-65 65m-492 492-65 65"/></g>
+<text x="450" y="1035" text-anchor="middle" fill="#173d67" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="7">ARTWORK PLACEHOLDER</text></svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1125" role="img" aria-labelledby="title desc">
+<title id="title">Woven artwork placeholder</title><desc id="desc">Interlocking blue and cream bands used until original artwork is supplied.</desc>
+<rect width="900" height="1125" fill="#244f7d"/>
+<g fill="none" stroke-linecap="square"><path d="M-80 150h390v250h280v250h390" stroke="#d5c6a6" stroke-width="70"/><path d="M-80 650h300V400h460V150h300" stroke="#a24432" stroke-width="70"/><path d="M-80 900h390V650h280V400h390" stroke="#171513" stroke-width="70"/><path d="M130-80v330h250v500h250v455" stroke="#90adc2" stroke-width="45" opacity=".8"/></g>
+<rect x="80" y="80" width="740" height="900" fill="none" stroke="#f1ebdc" stroke-width="10"/>
+<text x="450" y="1035" text-anchor="middle" fill="#f1ebdc" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="7">ARTWORK PLACEHOLDER</text></svg>

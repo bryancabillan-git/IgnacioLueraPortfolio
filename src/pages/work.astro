@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArtworkCard from '../components/ArtworkCard.astro';
+import ArtworkLightbox from '../components/ArtworkLightbox.astro';
+import { artworks } from '../data/artworks';
+
+const collections = [...new Set(artworks.map((artwork) => artwork.collection))];
+---
+
+<BaseLayout title="Work" description="Selected artwork from the portfolio of Ignacio Luera.">
+  <header class="shell page-hero">
+    <div>
+      <p class="eyebrow">Portfolio</p>
+      <h1>Work</h1>
+    </div>
+    <div class="page-hero-copy">
+      <p class="lead">A selection of artwork by Ignacio Luera. Open any piece to view it in detail.</p>
+    </div>
+  </header>
+
+  <section class="shell section" aria-labelledby="gallery-title">
+    <h2 class="sr-only" id="gallery-title">Artwork gallery</h2>
+    <div class="filters" aria-label="Filter artwork by collection">
+      <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All work</button>
+      {collections.map((collection) => (
+        <button class="filter-button" type="button" data-filter={collection} aria-pressed="false">
+          {collection}
+        </button>
+      ))}
+    </div>
+
+    <div class="gallery-grid" data-gallery>
+      {artworks.map((artwork, index) => (
+        <div data-gallery-item data-collection={artwork.collection}>
+          <ArtworkCard artwork={artwork} eager={index < 3} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <ArtworkLightbox />
+</BaseLayout>
+
+<script>
+  const filterButtons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const galleryItems = document.querySelectorAll<HTMLElement>('[data-gallery-item]');
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const selected = button.dataset.filter ?? 'all';
+      filterButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      galleryItems.forEach((item) => {
+        item.hidden = selected !== 'all' && item.dataset.collection !== selected;
+      });
+    });
+  });
+</script>
