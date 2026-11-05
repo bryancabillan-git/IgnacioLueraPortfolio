@@ -312,3 +312,11 @@ The project owner chose to simplify the portfolio and retain only the static Ast
 ### Ongoing artwork workflow
 
 Approved artwork images will be added to `public/art/`, and their metadata will be maintained directly in `src/data/artworks.ts`. This removes the need for Canva developer credentials, OAuth token rotation, Azure Functions, Azure Key Vault, and scheduled synchronization.
+
+## About-page portrait update
+
+- Added the client-supplied `ignacioluera.png` portrait to the public site assets.
+- Replaced the About-page monogram placeholder with Ignacio’s portrait.
+- Preserved the existing About-page grid column width.
+- Applied centered cover cropping so the image fills the existing responsive portrait area.
+- Removed the portrait from the outstanding-content note.

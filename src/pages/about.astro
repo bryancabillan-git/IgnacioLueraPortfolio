@@ -14,9 +14,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </header>
 
   <section class="shell section about-grid" aria-labelledby="biography-title">
-    <div class="portrait-placeholder" role="img" aria-label="Placeholder for a portrait of Ignacio Luera">
-      <span class="portrait-monogram" aria-hidden="true">IL</span>
-    </div>
+    <figure class="portrait-placeholder portrait-photo">
+      <img
+        src="/pictures/ignacioluera.png"
+        alt="Portrait of visual artist and educator Ignacio Luera"
+        width="791"
+        height="787"
+      />
+    </figure>
 
     <div class="about-copy">
       <p class="eyebrow">Biography</p>
@@ -43,7 +48,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </ul>
       </div>
 
-      <p class="content-note">Content still needed before launch: an approved artist statement, portrait, exhibition history, and additional teaching background.</p>
+      <p class="content-note">Content still needed before launch: an approved artist statement, exhibition history, and additional teaching background.</p>
     </div>
   </section>
 
