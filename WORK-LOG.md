@@ -328,3 +328,9 @@ Approved artwork images will be added to `public/art/`, and their metadata will 
 - Preserved the existing hero column and frame dimensions.
 - Used the existing centered cover treatment for a small responsive crop.
 - Added descriptive alternative text and intrinsic image dimensions.
+
+## Homepage artwork-frame refinement
+
+- Removed the offset treatment from the homepage artwork border.
+- Aligned the rust border directly around the image.
+- Removed the “Selected work” and “Portfolio” captions beneath the hero artwork.
