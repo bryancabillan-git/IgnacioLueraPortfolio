@@ -218,3 +218,60 @@ Copy this section for each later work session.
 ### Next steps
 -
 ```
+
+## Additional work — Internal Canva integration testing
+
+### Requested work
+
+- Add an internal Test page to the main site.
+- Test OAuth with a non-customer Canva account.
+- Retrieve Canva folders, design thumbnails, and exported images.
+- Observe Canva design changes before connecting the customer account.
+
+### Work completed
+
+- Added the protected `/test/` page and navigation entry.
+- Added Azure Static Web Apps authentication rules for `/test/` and `/api/canva/*`.
+- Added a managed Azure Functions API under `api/`.
+- Added Canva OAuth Authorization Code with PKCE.
+- Added encrypted, expiring OAuth state values.
+- Added explicit server-side authentication checks for every Canva endpoint.
+- Added local ignored token storage for development.
+- Added Azure Key Vault token storage for deployment.
+- Added endpoints for connection status, folder discovery, design retrieval, export creation, and export polling.
+- Added live folder refresh every 60 seconds on the Test page.
+- Added per-design JPG export testing.
+- Added local Static Web Apps CLI configuration through `npm run dev:canva`.
+- Updated Azure deployment to include the managed API.
+- Changed the Azure deployment workflow to manual-only until its token and resource are configured.
+- Unified the OAuth API and scheduled synchronization around the Key Vault secret `canva-oauth-token`.
+- Documented local test setup, secrets handling, deployment storage, and customer-launch cleanup in `README.md`.
+
+### Security decisions
+
+- Canva client secrets and refresh tokens are never returned to browser code.
+- The local settings file and token file are excluded from Git.
+- Local file token storage is rejected when the API detects an Azure environment.
+- Deployed token storage requires Azure Key Vault and managed identity.
+- The test page requires an authenticated Static Web Apps user.
+- The Test route should be removed or restricted to a custom administrator role before customer launch.
+
+### Verification completed
+
+- Installed the Static Web Apps CLI and API dependencies.
+- Confirmed Static Web Apps CLI version 2.1.0.
+- Ran `npm run build`; Astro generated 6 static pages.
+- Astro diagnostics reported 0 errors, 0 warnings, and 0 hints.
+- Checked every Azure Function JavaScript module for syntax errors.
+- Loaded the Function registration module successfully in test mode.
+- Verified encrypted OAuth state creation and decryption.
+- Parsed every new JSON configuration successfully.
+- Production dependency audits for both the site and API reported 0 vulnerabilities.
+- The root development dependency tree reports 9 transitive advisories from the Static Web Apps CLI toolchain; these packages are not shipped in the static site or managed API.
+
+### Live verification pending Canva settings
+
+- Start the local SWA emulator after test Canva credentials are configured.
+- Complete OAuth against the test Canva account.
+- Confirm folder and thumbnail retrieval with live account data.
+- Confirm at least one asynchronous JPG export.

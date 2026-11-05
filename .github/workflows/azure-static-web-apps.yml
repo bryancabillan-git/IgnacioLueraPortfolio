@@ -1,8 +1,8 @@
 name: Deploy to Azure Static Web Apps
 
+# Run this manually until the Azure Static Web App and deployment token are configured.
+# After configuration, restore the push trigger documented in README.md.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -16,12 +16,12 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Deploy site
+      - name: Deploy site and managed API
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: upload
           app_location: /
-          api_location: ""
+          api_location: api
           output_location: dist

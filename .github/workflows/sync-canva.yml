@@ -36,7 +36,13 @@ jobs:
         id: canva-token
         shell: bash
         run: |
-          token="$(az keyvault secret show --vault-name "${{ vars.CANVA_KEY_VAULT_NAME }}" --name canva-refresh-token --query value --output tsv)"
+          bundle="$(az keyvault secret show --vault-name "${{ vars.CANVA_KEY_VAULT_NAME }}" --name canva-oauth-token --query value --output tsv)"
+          token="$(BUNDLE="$bundle" node -e "process.stdout.write(JSON.parse(process.env.BUNDLE).refresh_token || '')")"
+          if [ -z "$token" ]; then
+            echo "The Key Vault token bundle does not contain a refresh token."
+            exit 1
+          fi
+          echo "::add-mask::$bundle"
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
 
@@ -49,7 +55,7 @@ jobs:
           CANVA_REFRESH_TOKEN_OUT: ${{ runner.temp }}/canva-refresh-token
           CANVA_FOLDER_ID: ${{ vars.CANVA_FOLDER_ID }}
 
-      - name: Store the rotated Canva refresh token
+      - name: Store the rotated Canva token bundle
         if: always()
         shell: bash
         run: |
@@ -58,10 +64,12 @@ jobs:
             echo "No rotated refresh token was produced."
             exit 0
           fi
+          refresh_token="$(cat "$token_file")"
+          bundle="$(REFRESH_TOKEN="$refresh_token" node -e "process.stdout.write(JSON.stringify({ access_token: '', refresh_token: process.env.REFRESH_TOKEN, expires_at: 0 }))")"
           az keyvault secret set \
             --vault-name "${{ vars.CANVA_KEY_VAULT_NAME }}" \
-            --name canva-refresh-token \
-            --value "$(cat "$token_file")" \
+            --name canva-oauth-token \
+            --value "$bundle" \
             --output none
 
       - name: Commit synchronized artwork

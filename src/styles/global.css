@@ -386,3 +386,48 @@
   html { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
 }
+
+/* Internal Canva integration test */
+.test-page-hero h1 { color: var(--blue); }
+.test-access-note { margin-top: 1.25rem; color: var(--ink-soft); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.test-dashboard { display: grid; gap: 2rem; }
+.test-panel { padding: clamp(1.5rem, 4vw, 3rem); border: 1px solid var(--ink); background: rgba(241, 235, 220, 0.82); }
+.test-connection-panel { border-top: 0.5rem solid var(--blue); }
+.test-panel-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
+.test-panel-heading h2 { margin-top: 0.35rem; font-size: clamp(2rem, 5vw, 3.7rem); }
+.status-pill { flex: 0 0 auto; padding: 0.45rem 0.7rem; border: 1px solid var(--rust); color: var(--rust); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.status-pill.is-connected { border-color: var(--blue); color: var(--paper); background: var(--blue); }
+.test-status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1px; border: 1px solid var(--line); background: var(--line); }
+.test-status-grid > div { min-width: 0; padding: 1rem; background: var(--paper); }
+.test-status-grid span, .folder-controls label > span { display: block; margin-bottom: 0.35rem; color: var(--ink-soft); font-size: 0.64rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.test-status-grid strong { display: block; overflow-wrap: anywhere; font-family: var(--serif); font-size: 0.95rem; font-weight: 400; }
+.test-instructions { max-width: 52rem; margin-bottom: 1.5rem; color: var(--ink-soft); }
+.folder-controls { display: grid; grid-template-columns: auto minmax(12rem, 1fr) minmax(12rem, 1fr) auto; gap: 1rem; align-items: end; }
+.folder-controls select, .folder-controls input { width: 100%; min-height: 3.5rem; padding: 0.75rem; border: 1px solid var(--ink); border-radius: 0; color: var(--ink); background: var(--paper); }
+.test-message { min-height: 1.5rem; margin-top: 1rem; color: var(--blue); font-size: 0.82rem; font-weight: 600; }
+.test-message.is-error, .test-export-status.is-error { color: var(--rust); }
+.test-results-panel { padding-inline: 0; border-inline: 0; }
+.test-results-panel > .test-panel-heading, .test-results-panel > .test-instructions, .test-results-panel > .test-message { margin-inline: clamp(1.5rem, 4vw, 3rem); }
+.test-results-heading { align-items: end; }
+.auto-refresh-control { display: flex; align-items: center; gap: 0.65rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
+.auto-refresh-control input { width: 1.15rem; height: 1.15rem; accent-color: var(--blue); }
+.test-design-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin-top: 2rem; background: var(--ink); }
+.test-design-card { display: grid; align-content: start; min-width: 0; background: var(--paper); }
+.test-design-image { display: grid; aspect-ratio: 4 / 3; place-items: center; overflow: hidden; color: var(--ink-soft); background: var(--paper-deep); font-size: 0.75rem; text-transform: uppercase; }
+.test-design-image img { width: 100%; height: 100%; object-fit: contain; background: #171513; }
+.test-design-copy { display: grid; gap: 0.8rem; padding: 1.25rem; }
+.test-design-copy h3 { font-size: 1.25rem; }
+.test-design-copy code { overflow: hidden; color: var(--ink-soft); font-size: 0.68rem; text-overflow: ellipsis; white-space: nowrap; }
+.test-design-copy .filter-button { justify-self: start; margin-top: 0.4rem; }
+.test-export-status { min-height: 1.25rem; color: var(--blue); font-size: 0.72rem; }
+.test-next-steps { grid-template-columns: 1fr; }
+
+@media (max-width: 960px) {
+  .folder-controls { grid-template-columns: 1fr 1fr; }
+  .test-design-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+  .test-panel-heading, .test-results-heading { align-items: flex-start; flex-direction: column; }
+  .folder-controls, .test-design-grid { grid-template-columns: 1fr; }
+}
